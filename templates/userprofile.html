@@ -5,7 +5,7 @@
   <title>Adaptive Web Assignment UserProfile page</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   
       <style>
       /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
@@ -22,7 +22,7 @@
 
 * { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
 
-html { width: 100%; height:100%; overflow:hidden; }
+html { width: 100%; height:100%;}
 
 
 .login { 
@@ -63,12 +63,28 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 	/*color: #fff;*/
 	/*text-shadow: 1px 1px 1px rgba(0,0,0,0.3);*/
 	margin: auto;
+	background-color:#DCDCDC;
+
+}
+.solink {
+	/*background: rgba(0,0,0,0.3);*/
+	font-size: 18px;
+	/*color: #fff;*/
+	/*text-shadow: 1px 1px 1px rgba(0,0,0,0.3);*/
+	margin: auto;
 
 }
 .logout {
 	 position: absolute;
      right: 0px;
      top: 0px;
+}
+
+.qheader {
+	font-size: 18px;
+	text-align: center;
+	background-color:hsla(120,100%,25%,0.3);
+
 }
     </style>
 
@@ -80,7 +96,7 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 {% else %}
   <h1>Hello, World!</h1>
 {% endif %}
-<p class="login-history" align = "center"><a href = "https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15">https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15</a></p>
+<p class="solink" align = "center">Check this link out ---><a href = "https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15">https://stackoverflow.com/questions/tagged/java?sort=frequent&pageSize=15</a></p>
 <br/>
 <br/>
 <br/>
@@ -93,4 +109,11 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
     <tr><td>{{time.strftime("%A %B %d, %Y %I:%M %p %Z")}}</td></tr>
     {% endfor %}
 </table>
-<form action="/logout" method="post" class="logout"><button name="username" value={{name}}>Log Out</button></form>
+<form action="/logout" method="post" class="logout"><button name="username" value={{name}} class="btn btn-default btn-lg">Log Out</button></form>
+<div class="qheader"><h3>User Activity Logged</h3></div>
+<p>For the purpose of this assignment, I have logged the following actions: User upvoting an answer, User opening the link of a question, User clicking on a tag(eg: java, css) to access all questions under that tag , User clicking on a StackOverflow recommended job link and user copying any text/answer from the Stackoverflow webpage.<p>
+<p>1.Upvoting an answer: A user upvoting an answer will definitely mean the answer was useful to him, also that the user has gained an aditional understanding of the topic associated with that particular Q&A</p>
+<p>2.User clicking on a question to open the webpage having all its answers. This absolutely means the user is interested in this topic and it is a topic he most likely wishes to learn more about.</p>
+<p>3.User clicking on a tag(for instance, java, spring etc).This can be understood to mean, the user would like to see more questions related to that topic. It also means that perhaps, the user has gained sufficient understanding of the topic to explore and seek out questions he may be able to answer</p>
+<p>4.User clicking on a StackOverflow job link: Since SO displays job roles prominently these days and most of the times it is based on the technologies which we explore actively on StackOverflow, I feel that tracking the job roles ,the user is looking at might give us insight into the technologies he wishes to learn more about and the topics that motivate him</p>
+<p>5. User copying answers from the webpage: If a user is copying text from the answers, he is most probably doing so for easy reference later. It might represent a topic the user is facing difficulty with as he needs to copy the text. It might also mean topics he is very actively using in his daily work or study.</p>
