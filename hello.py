@@ -72,6 +72,21 @@ def logout():
    		return "logged out"
 
 
+@app.route('/stackoverflow/logs', methods = ["POST"])
+def storeLogs():
+	print "Phew"
+	if request.method == 'POST':
+		out_object = {}
+		out_object['action'] = request.form['action']
+		out_object['content'] = request.form['content']
+		out_object['url'] = request.form['url']
+		out_object['timestamp'] = request.form['timestamp']
+		print out_object
+		db,client = connect_to_db()
+		db.users.find_one_and_update({'logged_in': True},{'$push':{'logs': out_object}})
+		client.close()
+		return 'True'
+	return 'False'
 
 
 if __name__ == '__main__':
