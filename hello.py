@@ -25,7 +25,7 @@ def show_user_profile(username):
     # show the user profile for that user
     db,client = connect_to_db()
     datelist = db.users.find_one({'username': username}, {'timestamp':1})['timestamp']
-    datelist = datelist[-5:]
+    datelist = reversed(datelist)
     print datelist
     client.close()
     return render_template('userprofile.html', name=username, datelist = datelist)
@@ -44,21 +44,37 @@ def login():
 				#session['username'] = request.form['username']
 				update_dict = {}
 				timestamp= datetime.datetime.now()
+				db.users.update_many({},{'$set':{'logged_in': False}})
 				db.users.find_one_and_update({'username': username},{'$push':{'timestamp': timestamp}, '$set':{'logged_in': True}})
 				client.close()
-				return redirect(url_for('show_user_profile', username='ankit'))			
+				return redirect(url_for('show_user_profile', username=username))			
 		else:
 			client.close()
 			return "No such username registered with the website"
 	else:
-		return '''
-			<form action = "" method = "post">
-			<p>UserName: <input type ="text" name = "username"/></p>
-			<p>Password: <input type ="password" name = "password"/></p>
-			<p>Login: <input type = "submit" value = "Login"/></p>
-			</form>
-			'''
+		return render_template('index.html') 
 
+@app.route('/signup', methods = ["GET", "POST"])
+def signup():
+	if request.method == 'GET':
+		return render_template('signup.html')
+	elif request.method == "POST":
+		username = request.form['username']
+		password = request.form['password']
+		db,client = connect_to_db()
+		dict = db.users.find_one({'username': username}, {'username':1, 'password': 1})
+		if dict is None:
+			out_object = {'username': username, 'password': password}
+			db.users.insert_one(out_object)
+			db.users.update_many({},{'$set':{'logged_in': False}})
+			db.users.find_one_and_update({'username': username},{'$push':{'timestamp': datetime.datetime.now()}, '$set':{'logged_in': True}})
+			client.close()
+			return redirect(url_for('show_user_profile', username=username))			
+		else:
+			return "Username already exists in our records. please choose a different username"
+
+
+		
 @app.route('/logout', methods = ["POST"])
 def logout():
    # remove the username from the session if it is there
