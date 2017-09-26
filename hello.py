@@ -16,8 +16,9 @@ def index():
 
 def connect_to_db():
     # CreatePyMongoConnection
-    client = MongoClient()
-    db = client['test']
+    client = MongoClient("ds127044.mlab.com", 27044)
+    db = client['adaptivewebdb']
+    db.authenticate('admin', 'admin')
     return db,client
 
 @app.route('/user/<username>')
@@ -77,15 +78,15 @@ def signup():
 		
 @app.route('/logout', methods = ["POST"])
 def logout():
-   # remove the username from the session if it is there
+	# remove the username from the session if it is there
 
    if request.method == 'POST':
-   		db,client = connect_to_db()
+		db,client = connect_to_db()
 		#session.pop('username', None)
 		print request.form['username']
 		db.users.find_one_and_update({'username': request.form['username']},{'$set':{'logged_in': False}})
-   		client.close()
-   		return "logged out"
+		client.close()
+		return "logged out"
 
 
 @app.route('/stackoverflow/logs', methods = ["POST"])
