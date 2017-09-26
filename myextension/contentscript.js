@@ -2,7 +2,7 @@ alert("Hello! I am an alert box!!");
 
 function postToServer(encodedstr, relUrl){
     var xhr = new XMLHttpRequest();
-    var url = "http://127.0.0.1:5000/stackoverflow" + relUrl;
+    var url = "https://a-nadig-cse591.herokuapp.com/stackoverflow" + relUrl;
     xhr.open("POST", url, true);
     //console.logs(url);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
