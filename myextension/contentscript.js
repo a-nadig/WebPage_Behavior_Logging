@@ -66,7 +66,7 @@ window.addEventListener('load',function(){
     //rootelement.addEventListener("scroll", function(){
 
     //    });
-    var tag_elements = document.getElementsByClassName('post-tag js-gps-track');
+    var tag_elements = document.getElementsByClassName('post-tag');
     console.log(tag_elements);
     for(var i = 0, len = tag_elements.length; i < len; i++){
             tag_elements[i].addEventListener("click", function(e){
