@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="static/visualizationsjscript.js"></script>
+<link rel="stylesheet" href="static/visualization.css"></link>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+	<a class="navbar-brand" href="#">CSE 591: Assignment-2</a>
+</nav>
+<br>
+<br>
+<br>
+<div class="container" style="border:1px solid #cecece;" >
+<div class = "row btn-group">
+<button id="flip2Tags" onclick="switchgraph(this)" type="button" value="//plot.ly/~ankitrko7/6">Tags</button>
+<button id="flip2Questions" type="button" onclick="switchgraph(this)" value="//plot.ly/~ankitrko7/8">Questions</button>
+<button id="flip2Upvotes" type="button" onclick="switchgraph(this)" value="//plot.ly/~ankitrko7/10">Upvotes</button>
+</div>
+<div class="row align-items-start">
+<iframe id="firstplot" width="800" height="400" frameborder="0" scrolling="no" src="//plot.ly/~ankitrko7/6.embed"></iframe>
+</div>
+<ul>
+<li>The number of clicks is in the order: questions >tags > upvotes. Thus, users interact the most by clicking on question hyperlinks, then tags and least through upvotes</li>
+<li>Tags representing major topics are clicked on much more than the rest of the tags which suggests how users navigate through a website and how an adaptive system should be designed to deal with this behaviour.</li>
+<li>Upvotes are very rare, meaning only a small subset of users interact that way. This maybe attributed to restrictive factors such as login and minimum reputation required to upvote answers on StackOverflow.</li>
+<li>A strong correlation is observed between users upvoting answers and clicking on tags as their preferred mode of navigating StackOverflow</li>
+</ul>
+<p>Explanation:</p>
+<p>My first observation from the visualization is something we observe using stackoverflow daily as well. Users interact most by opening a question/answer page and surfing to related questions and so on instead of directly searching for all questions under a tag. It also correlates with point 3. wherein I observed that only a small subset of users upvote a lot. This can be explained as them being users of a high reputation who are allowed to upvote, who login to StackOverflow thereby making an effort to increase their stackoverflow presence. They are also the ones who click the most on non-popular tags as they seem to find questions to answer/comment/upvote. My second observation suggests that since the average user navigates using question hyperlinks as his choice of interaction and only popular tags, adaptive systems may need to adapt to this behavour by attaching multiple tags to questions and guiding the user in a more intelligent way through the web application</p>
+</ul>
+</div>
+<br/>
+<div class="container-fluid" style="border:1px solid #cecece;">
+<div class="dropdown">
+  <button class="dropbtn">Select User</button>
+  <div class="dropdown-content">
+    <a href="#" onclick="switchgraph2(this)" id="//plot.ly/~ankitrko7/16">aaa</a>
+    <a href="#" onclick="switchgraph2(this)" id="//plot.ly/~ankitrko7/18">bbb</a>
+    <a href="#" onclick="switchgraph2(this)" id="//plot.ly/~ankitrko7/20">ccc</a>
+  </div>
+</div>
+<div class="container-fluid">
+<iframe id="secondplot" width="600" height="500" align="left" frameborder="0" scrolling="no" src="//plot.ly/~ankitrko7/16.embed"></iframe>
+<iframe width="600" height="500" frameborder="0" scrolling="no" src="//plot.ly/~ankitrko7/12.embed"></iframe>
+<ul>
+	<li></li>
+</ul>
+</div>
+</div>
+<div class="container-fluid">
+<iframe id="thirdplot" width="900" height="800" align="center" frameborder="0" scrolling="no" src="//plot.ly/~ankitrko7/24.embed"></iframe>
+</div>
+</body>
+</html>

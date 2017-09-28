@@ -19,15 +19,16 @@ window.addEventListener('load',function(){
     var elements = document.getElementsByClassName('question-hyperlink');
     console.log(elements);
     for(var i = 0, len = elements.length; i < len; i++) {
-        elements[i].addEventListener("click", function(){
+        elements[i].addEventListener("click", function(e){
             var d = new Date();
+            console.log(e.srcElement.textContent);
             var timestamp = d.toUTCString();
-            var content = elements[i].textContent;
+            var content = e.srcElement.textContent;
             //var nonstr = "url=" + document.URL+"&action=clickupvote&content=" + content + "&timeStamp=" +timestamp;
             //console.log(nonstr);
             var encodedstr = "url=" + encodeURIComponent(document.URL)+"&action=clickquestion&content=" + encodeURIComponent(content) + "&timestamp=" + encodeURIComponent(timestamp);
             console.log(encodedstr);
-            console.log("encoded the string")
+            console.log("encoded the string");
             postToServer(encodedstr, "/logs");
         });
      
@@ -36,7 +37,7 @@ window.addEventListener('load',function(){
     var elements1 = document.getElementsByClassName('job');
     console.log(elements1);
     for(var i = 0, len = elements1.length; i < len; i++){
-        elements1[i].addEventListener("click", function(){
+        elements1[i].addEventListener("click", function(e){
             var d = new Date();
             var timestamp = d.toUTCString();
             var content = e.srcElement.textContent;
@@ -50,7 +51,7 @@ window.addEventListener('load',function(){
     var elements2 = document.getElementsByClassName('vote-up-off');
     console.log(elements2);
     for(var i = 0, len = elements2.length; i < len; i++){
-        elements2[i].addEventListener("click", function(){
+        elements2[i].addEventListener("click", function(e){
             var d = new Date();
             var timestamp = d.toUTCString();
             var content = ''
@@ -65,7 +66,7 @@ window.addEventListener('load',function(){
     //rootelement.addEventListener("scroll", function(){
 
     //    });
-    var tag_elements = document.getElementsByClassName('post-tag js-gps-track');
+    var tag_elements = document.getElementsByClassName('post-tag');
     console.log(tag_elements);
     for(var i = 0, len = tag_elements.length; i < len; i++){
             tag_elements[i].addEventListener("click", function(e){

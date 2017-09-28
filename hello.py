@@ -16,8 +16,9 @@ def index():
 
 def connect_to_db():
     # CreatePyMongoConnection
-    client = MongoClient()
-    db = client['test']
+    client = MongoClient("ds127044.mlab.com", 27044)
+    db = client['adaptivewebdb']
+    db.authenticate('admin', 'admin')
     return db,client
 
 @app.route('/user/<username>')
@@ -103,6 +104,12 @@ def storeLogs():
 		client.close()
 		return 'True'
 	return 'False'
+
+@app.route('/visualizations', methods = ["GET"])
+def getVisualizations():
+	print "Inside visualizations"
+	return render_template('visualizations.html')
+
 
 
 if __name__ == '__main__':
